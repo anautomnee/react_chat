@@ -1,11 +1,17 @@
-import './App.css'
+import './App.css';
+import { io } from 'socket.io-client';
+import {BrowserRouter} from "react-router-dom";
+import {MainRouter} from "./routes/MainRouter.tsx";
+
+const serverUrl = import.meta.env.VITE_SERVER_URL || "http://localhost:3001";
+
+const socket = io(serverUrl);
 
 function App() {
-
   return (
-    <>
-      <h1>Hello, world!</h1>
-    </>
+    <BrowserRouter>
+        <MainRouter socket={socket} />
+    </BrowserRouter>
   )
 }
 
